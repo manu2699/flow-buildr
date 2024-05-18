@@ -8,7 +8,7 @@ export const EditAction = React.memo(({ node, onBack, onEdit }) => {
 	}
 
 	return (
-		<div className='w-[300px] border-l h-full'>
+		<div key={node.id} className='w-[300px] border-l h-full'>
 			{/* Settings header */}
 			<div className='w-full p-2 flex items-center border-b'>
 				<div role='button' aria-label='back-button' onClick={onBack}>

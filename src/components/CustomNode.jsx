@@ -27,27 +27,22 @@ function DefaultNode({ data }) {
 function MessageNode({ data }) {
 	return (
 		<div className='bg-white shadow-md rounded-md overflow-hidden min-w-[200px]'>
-	
-			<div className='w-full p-1 px-2 flex gap-1 items-center bg-blue-200 text-sm font-semibold relative'>
+			<div className='w-full p-1 px-2 flex gap-2 items-center bg-teal-300 text-sm font-semibold relative'>
 				<BiMessageDetail />
 				<div className='w-[75%]'>Send Message</div>
-				<div>
-					{data.vendor === "Whatsapp" ? (
-						<FaWhatsapp className='text-green-600' />
-					) : null}
-				</div>
+				<div>{data.vendor === "Whatsapp" ? <FaWhatsapp /> : null}</div>
 			</div>
 			<div className='p-4 text-xs'>{data.label}</div>
 
 			<Handle
 				type='target'
 				position={Position.Left}
-				className='h-2 w-2 !bg-black'
+				className='h-2 w-2 bg-black'
 			/>
 			<Handle
 				type='source'
 				position={Position.Right}
-				className='h-2 w-2 !bg-black'
+				className='h-2 w-2 bg-black'
 			/>
 		</div>
 	);

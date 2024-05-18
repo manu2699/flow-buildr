@@ -3,8 +3,7 @@ import ReactFlow, {
 	useStoreApi,
 	useNodesState,
 	useEdgesState,
-	addEdge,
-	getConnectedEdges
+	addEdge
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -135,9 +134,10 @@ export function FlowBuilder({ initNodes, initEdges }) {
 	return (
 		<div className='builder'>
 			{/* TopNav */}
-			<div className='w-full p-2 flex border-b bg-gray-100 pr-10'>
+			<div className='w-full flex border-b bg-gray-100 py-3 px-5'>
+				<p className='text-blue-700 font-semibold'>Flow Builder</p>
 				<button
-					className='ml-auto px-4 py-1 bg-white text-blue-700 text-sm font-semibold border-[1.5px] border-blue-700 rounded-md'
+					className='ml-auto px-3 py-1 bg-white text-blue-700 text-xs font-semibold border border-blue-700 rounded-md'
 					onClick={handleSaveChanges}>
 					Save Changes
 				</button>
