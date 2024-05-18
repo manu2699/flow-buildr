@@ -13,6 +13,9 @@ import { ActionList } from "./ActionList";
 import { EditAction } from "./EditAction";
 import { showToast } from "./Toast";
 
+import { MdSave } from "react-icons/md";
+import { GrPowerReset } from "react-icons/gr";
+
 const nodeTypes = {
 	custom: CustomNode
 };
@@ -131,18 +134,18 @@ export function FlowBuilder({ initNodes, initEdges }) {
 		localStorage.setItem("flowState", JSON.stringify(flowState));
 	}
 
+	function handleReset() {
+		setNodes([]);
+		setEdges([]);
+	}
+
 	return (
 		<div className='builder'>
-			{/* TopNav */}
-			<div className='w-full flex border-b bg-gray-100 py-3 px-5'>
-				<p className='text-blue-700 font-semibold'>Flow Builder</p>
-				<button
-					className='ml-auto px-3 py-1 bg-white text-blue-700 text-xs font-semibold border border-blue-700 rounded-md'
-					onClick={handleSaveChanges}>
-					Save Changes
-				</button>
-			</div>
-
+			<TopNav
+				onSave={handleSaveChanges}
+				onReset={handleReset}
+				showReset={nodes.length > 0}
+			/>
 			<div className='builderGrid'>
 				<ReactFlow
 					nodes={nodes}
@@ -167,6 +170,30 @@ export function FlowBuilder({ initNodes, initEdges }) {
 				) : (
 					<ActionList />
 				)}
+			</div>
+		</div>
+	);
+}
+
+function TopNav({ onSave, showReset, onReset }) {
+	return (
+		<div className='w-full flex border-b bg-gray-100 py-3 px-5'>
+			<p className='text-blue-700 font-semibold'>Flow Builder</p>
+			<div className='ml-auto flex gap-2'>
+				{showReset ? (
+					<button
+						className='px-3 py-1 flex gap-2 items-center bg-white text-red-400 text-xs font-semibold border border-red-300 rounded-md'
+						onClick={onReset}>
+						<GrPowerReset />
+						Reset
+					</button>
+				) : null}
+				<button
+					className='px-3 py-1 flex gap-2 items-center bg-white text-blue-700 text-xs font-semibold border border-blue-700 rounded-md'
+					onClick={onSave}>
+					<MdSave />
+					Save Changes
+				</button>
 			</div>
 		</div>
 	);
